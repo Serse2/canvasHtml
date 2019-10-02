@@ -7,7 +7,41 @@
 <body>
 <canvas id="draw" width="800" height="800"></canvas>
 <script>
-  
+  //seleziono elemento canvas dal DOM html
+  const canvas = document.querySelector('#draw')
+  //contestualizzo il rendering e le funzioni di disegno impostando il parametro '2d' (due dimensioni)
+  const ctx = canvas.getContext('2d');
+  //fornisco a canvas variabile le dimensioni del foglio su cui vogliamo operare
+  //in questo caso prendendo le dimensioni della pagina visualizzata
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  //imposto il colore del disegno
+  ctx.stokeStyle = '#BADA55'
+  //determina la forma utilizzata per unire due segmenti di linea nel punto in cui si incontrano
+  ctx.lineJoin = 'round'
+  //determina la forma utilizzata per disegnare i punti finali delle linee
+  ctx.lineCap = 'round'
+
+  //setto la variabile isDrowing al fine di poter disegnare solo quando il il click del mouse è premuto
+  let isDrowing = false
+  //setto le variabili su asse x e y
+  let lastX = 0
+  let lastY = 0
+
+  //creiamo la funzione per disegnare
+  function draw(e){
+    if (!isDrowing) return //stoppa la fn se isDrowing rimane false
+      console.log(e)
+    
+  }
+
+  //addiungiamo i listener per applicare la funzione solo quando il mouse è premuto
+  canvas.addEventListener('mousemove', draw)
+  canvas.addEventListener('mousedown', () => { isDrowing = true })
+  canvas.addEventListener('mouseup', () => { isDrowing = false })
+  canvas.addEventListener('mouseout', () => { isDrowing = false })
+
 </script>
 
 <style>
